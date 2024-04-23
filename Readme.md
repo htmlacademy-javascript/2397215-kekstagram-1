@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Dmitriy Fokeev](https://up.htmlacademy.ru/javascript-individual/1/user/2397215).
-* Наставник: `Неизвестно`.
+- Студент: [Dmitriy Fokeev](https://up.htmlacademy.ru/javascript-individual/1/user/2397215).
+- Наставник: `Мария Филиппова`.
 
 ---
 
