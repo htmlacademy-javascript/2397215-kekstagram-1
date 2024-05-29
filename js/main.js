@@ -42,8 +42,8 @@ const generateComment = (id) => {
 };
 
 const generatePhotosDescription = (id) => {
-  const url = 'photos/' + {id} + '.jpg';
-  const description = 'Описание фотографии номер' + {id};
+  const url = 'photos/{{i}}.jpg';
+  const description = 'Описание фотографии номер {{i}}';
   const likes = getRandomNumber (15, 200);
   const comments = generateComment(getRandomNumber(1, 10));
 
@@ -67,3 +67,4 @@ const generatePhotos = () => {
 };
 
 generatePhotos();
+
