@@ -20,51 +20,42 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
+const like = {
+  MIN: 15,
+  MAX: 200
+};
+
+const randomComments = {
+  MIN: 1,
+  MAX: 10
+};
+
+const numberOfPhotos = {
+  NUMBER: 25
+};
+
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const getRandomElement = (arr) => {
-  const randomIndex = getRandomNumber(0, arr.length - 1);
+const getRandomElement = (items) => items[getRandomNumber(0, items.length - 1)];
 
-  return arr[randomIndex];
-};
+const generateComment = (id) => ({
+  id: id,
+  avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
+  message: getRandomElement(MESSAGES),
+  name: getRandomElement(NAMES)
+});
 
-const generateComment = (id) => {
-  const avatar = 'img/avatar-{{getRandomNumber(1, 6)}}.svg';
-  const message = getRandomElement(MESSAGES);
-  const name = getRandomElement(NAMES);
+const generateComments = () => Array.from({ length: randomComments.MAX}, (v, i) => generateComment(i));
 
-  return {
-    id: id,
-    avatar: avatar,
-    message: message,
-    name: name
-  };
-};
+const generatePhoto = (id) => ({
+  id: id,
+  url: `photos/${id}.jpg`,
+  description: `Описание фотографии номер ${id}` ,
+  likes: getRandomNumber(like.MIN, like.MAX),
+  comments: generateComments()
+});
 
-const generatePhotosDescription = (id) => {
-  const url = 'photos/{{i}}.jpg';
-  const description = 'Описание фотографии номер {{i}}';
-  const likes = getRandomNumber (15, 200);
-  const comments = generateComment(getRandomNumber(1, 10));
-
-  return {
-    id: id,
-    url: url,
-    description: description,
-    likes: likes,
-    comments: comments,
-  };
-};
-
-const generatePhotos = () => {
-  const photos = [];
-
-  for (let i = 1; i <= 25; i++) {
-    photos.push(generatePhotosDescription(i));
-  }
-  return photos;
-
-};
+const generatePhotos = () => Array.from({ length: numberOfPhotos.NUMBER }, (v, i) => generatePhoto(i));
 
 generatePhotos();
 
