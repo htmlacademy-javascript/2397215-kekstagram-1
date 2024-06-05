@@ -61,7 +61,3 @@ const generatePhoto = (id) => ({
 const generatePhotos = () => Array.from({ length: PHOTO_NUMBER }, (v, i) => generatePhoto(i + 1));
 
 generatePhotos();
-
-console.log(generatePhotos());
-
-console.log(generateComments());
