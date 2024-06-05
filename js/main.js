@@ -20,42 +20,48 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const like = {
+const Like = {
   MIN: 15,
   MAX: 200
 };
 
-const randomComments = {
+const Comment = {
   MIN: 1,
   MAX: 10
 };
 
-const numberOfPhotos = {
-  NUMBER: 25
+const IdComment = {
+  MIN: 1,
+  MAX: 100
 };
+
+const PHOTO_NUMBER = 25;
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 const getRandomElement = (items) => items[getRandomNumber(0, items.length - 1)];
 
-const generateComment = (id) => ({
-  id: id,
+const generateComment = () => ({
+  id: getRandomNumber(IdComment.MIN, IdComment.MAX),
   avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
   message: getRandomElement(MESSAGES),
   name: getRandomElement(NAMES)
 });
 
-const generateComments = () => Array.from({ length: randomComments.MAX}, (v, i) => generateComment(i));
+const generateComments = () => Array.from({ length: getRandomNumber(Comment.MIN, Comment.MAX)}, (v, i) => generateComment(i + 1));
 
 const generatePhoto = (id) => ({
   id: id,
   url: `photos/${id}.jpg`,
   description: `Описание фотографии номер ${id}` ,
-  likes: getRandomNumber(like.MIN, like.MAX),
+  likes: getRandomNumber(Like.MIN, Like.MAX),
   comments: generateComments()
 });
 
-const generatePhotos = () => Array.from({ length: numberOfPhotos.NUMBER }, (v, i) => generatePhoto(i));
+const generatePhotos = () => Array.from({ length: PHOTO_NUMBER }, (v, i) => generatePhoto(i + 1));
 
 generatePhotos();
 
+console.log(generatePhotos());
+
+console.log(generateComments());
