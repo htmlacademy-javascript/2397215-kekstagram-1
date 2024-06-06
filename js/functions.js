@@ -20,9 +20,8 @@ const isNumber = (str) => {
     }
   }
 
-  const newNumber = parseInt(numbers, 10);
+  return parseInt(numbers, 10);
 
-  return newNumber;
 };
 
 isNumber('2023 год');
@@ -47,9 +46,7 @@ padString('q', 4, 'werty');
 
 //Функция для проверки длины строки.
 
-const checkString = (str, maxLength) => {
-  const getString = str.length <= maxLength;
-  return getString;
-};
+const checkString = (str, maxLength) => str.length <= maxLength;
 
 checkString('проверяемая строка', 20);
+
